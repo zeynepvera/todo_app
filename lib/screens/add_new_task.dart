@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
 import 'package:todo_app/constants/tasktype.dart';
 import 'package:todo_app/model/task.dart';
+import 'package:todo_app/model/todo.dart';
+import 'package:todo_app/service/todo_service.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key, required this.addNewTask});
@@ -15,9 +18,11 @@ class AddNewTask extends StatefulWidget {
 
 class _AddNewTaskState extends State<AddNewTask> {
   TextEditingController titleController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
+  TextEditingController userIdController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+  TodoService todoService = TodoService();
 
   TaskType taskType = TaskType.note;
 
@@ -151,7 +156,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                         const Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
-                            "Date",
+                            "User ID",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -161,7 +166,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextField(
-                            controller: dateController,
+                            controller: userIdController,
                             decoration: const InputDecoration(
                                 filled: true, fillColor: Colors.white),
                           ),
@@ -231,16 +236,17 @@ class _AddNewTaskState extends State<AddNewTask> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  
-                  Task newtask = Task(
+                  saveTodo();
+
+                  /*Task newtask = Task(
                       type: taskType,
                       title: titleController.text,
                       description: descriptionController.text,
                       isCompleted: false);
 
-                  widget.addNewTask(newtask);
+                  widget.addNewTask(newtask);*/
+
                   Navigator.pop(context);
-                  
                 },
                 child: const Text(
                   "Save",
@@ -252,5 +258,16 @@ class _AddNewTaskState extends State<AddNewTask> {
         ),
       ),
     );
+  }
+
+  void saveTodo() {
+    Todo newTodo = Todo(
+      id: -1,
+      todo: titleController.text,
+      completed: false,
+      userId: int.parse(userIdController.text),
+    );
+
+    todoService.addTodo(newTodo);
   }
 }

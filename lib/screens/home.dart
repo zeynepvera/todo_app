@@ -58,7 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     TodoService todoService = TodoService();
-    todoService.getUncompletedTodos();
 
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
