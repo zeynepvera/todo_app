@@ -15,7 +15,7 @@ class TodoService {
     for (var element in resp) {
       Todo task = Todo.fromJson(element);
 
-      if (!task.completed!) {
+      if (task.completed==false) {
         // !task.completed! is same with task.completed==false
         todos.add(task);
       }
@@ -28,21 +28,14 @@ class TodoService {
     List<dynamic> resp = jsonDecode(response.body)["todos"];
     List<Todo> todos = List.empty(growable: true);
 
-    for(var element in resp) {
+
+         resp.forEach((element) {
       Todo task = Todo.fromJson(element);
 
       if (task.completed! == true) {
         todos.add(task);
       }
-    }
-
-        /* resp.forEach((element) {
-      Todo task = Todo.fromJson(element);
-
-      if (task.completed! == true) {
-        todos.add(task);
-      }
-    }); */
+    }); 
 
         
 

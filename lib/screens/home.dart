@@ -66,17 +66,20 @@ class _HomeScreenState extends State<HomeScreen> {
       home: SafeArea(
         child: Scaffold(
           backgroundColor: HexColor(backgroundColor),
+          
           body: Column(
             children: [
+
               //HEADER
               Container(
                 width: deviceWidth,
                 height: deviceHeight / 3,
                 decoration: const BoxDecoration(
+                  
                     color: Colors.green,
                     image: DecorationImage(
                         image: AssetImage(
-                          "lib/assets/images/Ellipse 1.png",
+                          "lib/assets/images/nature1.jpg",
                         ),
                         fit: BoxFit.cover)),
                 child: const Column(
@@ -121,8 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         } else {
                           return ListView.builder(
                             primary: false, //önceligin o olmadıgını bilsin
-                            shrinkWrap:
-                                true, //sadece ona tahsis edilen yeri kullansın diye
+                            shrinkWrap: true, //sadece ona tahsis edilen yeri kullansın diye
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return Todoitem(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
@@ -6,6 +5,7 @@ import 'package:todo_app/constants/tasktype.dart';
 import 'package:todo_app/model/task.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/service/todo_service.dart';
+
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key, required this.addNewTask});
@@ -41,7 +41,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                 width: deviceWidth,
                 height: deviceHeight / 10,
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 11, 92, 12),
+                  color: Color.fromARGB(255, 202, 169, 112),
                   image: DecorationImage(
                     image: AssetImage("lib/assets/images/Ellipse 1.png"),
                     fit: BoxFit.cover,
@@ -234,23 +234,26 @@ class _AddNewTaskState extends State<AddNewTask> {
                   )
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  saveTodo();
-
-                  /*Task newtask = Task(
-                      type: taskType,
-                      title: titleController.text,
-                      description: descriptionController.text,
-                      isCompleted: false);
-
-                  widget.addNewTask(newtask);*/
-
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "Save",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: ElevatedButton(
+                  onPressed: () {
+                    saveTodo();
+                
+                    Task newtask = Task(
+                        type: taskType,
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        isCompleted: false);
+                
+                    widget.addNewTask(newtask);
+                
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
